@@ -1,0 +1,10 @@
+#!/bin/bash
+crontab -l > cron_tmp
+echo "0 0 * * * \
+	A=\"\$(md5sum /etc/crontab | awk '{ print \$1 }')\" && \
+	B=\"\$(cat /etc/crontab.log)\" && \
+	if [ '\$A' != '\$B' ] ; then \
+		md5sum /etc/crontab | awk '{ print \$1 }' > /etc/crontab.log && \
+		echo '/etc/crontab was modified' | mail -s '/etc/crontab modified' root ; fi" >> cron_tmp
+crontab cron_tmp
+rm cron_tmp

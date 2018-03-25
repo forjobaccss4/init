@@ -1,2 +1,2 @@
-change line in /etc/hosts
-46.19.122.85 cdn.unit.ua cdn.intra.42.fr
+edit /etc/hosts and add line in this file like:
+46.19.122.85 intra.42.fr
